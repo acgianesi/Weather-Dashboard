@@ -15,7 +15,7 @@ class City {
 
 // TODO: Complete the HistoryService class
 class HistoryService {
-  private filePath = path.join(__dirname, '../../db/searchHistory.json');
+  private filePath = path.join(__dirname, '../../data/searchHistory.json');
   // TODO: Define a read method that reads from the searchHistory.json file
   // private async read() {}
   private async read(): Promise<City[]> {
