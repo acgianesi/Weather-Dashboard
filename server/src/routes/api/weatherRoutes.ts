@@ -12,26 +12,26 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ message: 'City name is required.' });
     }
 
-    const weatherData = await WeatherService.getWeatherByCity(cityName);
+    const weatherData = await WeatherService.getWeatherForCity(cityName);
 
     // done: save city to search history
-    const savedCity = await HistoryService.saveCity(cityName);
-    res.status(200).json({
+    const savedCity = await HistoryService.addCity(cityName);
+    return res.status(200).json({
       message: 'Weather data fetched and city saved to history.',
       weatherData,
       savedCity,
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error fetching weather data.', error });
+   return res.status(500).json({ message: 'Error fetching weather data.', error });
   }
 });
 
 // done: GET search history
-router.get('/history', async (req, res) => {
+router.get('/history', async (_,res) => {
   try{
-    const searchHistory = await HistoryService.getSearchHistory();
-    res.status(200).json(searchHistory);
+    const searchHistory = await HistoryService.getCities();
+   res.status(200).json(searchHistory);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error retrieving search history.', error });
