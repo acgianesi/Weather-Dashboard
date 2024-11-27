@@ -38,6 +38,6 @@ router.get('/history', async (_,res) => {
   }
 });
 // * BONUS TODO: DELETE city from search history
-router.delete('/history/:id', async (req, res) => { });
+// router.delete('/history/:id', async (req, res) => { });
 
 export default router;
