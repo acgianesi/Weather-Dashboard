@@ -22,7 +22,7 @@ class HistoryService {
     try {
       const data = await fs.readFile(this.filePath, 'utf-8');
       return JSON.parse(data) || [];
-    } catch (error:any) {
+    } catch (error: any) {
       if (error.code === 'ENOENT') {
         return [];
       }
@@ -69,6 +69,17 @@ class HistoryService {
 
   // * BONUS TODO: Define a removeCity method that removes a city from the searchHistory.json file
   // async removeCity(id: string) {}
+
+  public async removeCity(id: string): Promise<void> {
+    try {
+      const cities = await this.read();
+      const updatedCities = cities.filter(city => city.id !== id);
+      await this.write(updatedCities);
+    } catch (error) {
+      console.error(error);
+      throw new Error('Failed to remove city.');
+    }
+  }
 }
 
 export default new HistoryService();
