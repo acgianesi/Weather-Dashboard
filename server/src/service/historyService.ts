@@ -1,6 +1,10 @@
 import fs from 'fs/promises';
 import path from 'path';
 
+const __filename = new URL(import.meta.url).pathname;
+const __dirname = path.dirname(__filename);
+
+
 // TODO: Define a City class with name and id properties
 
 class City {
@@ -15,7 +19,7 @@ class City {
 
 // TODO: Complete the HistoryService class
 class HistoryService {
-  private filePath = path.join(__dirname, '../../data/searchHistory.json');
+  private filePath = path.join(__dirname, '../../db/searchHistory.json');
   // TODO: Define a read method that reads from the searchHistory.json file
   // private async read() {}
   private async read(): Promise<City[]> {
